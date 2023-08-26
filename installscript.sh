@@ -1,4 +1,5 @@
 #! /bin/bash
+#newversion
 # the following command will set the ubuntu service restart under apt to automatic
 sed -i 's/#$nrconf{restart} = '"'"'i'"'"';/$nrconf{restart} = '"'"'a'"'"';/g' /etc/needrestart/needrestart.conf
 echo -e "$G Installing pre-req's...please standby..."
@@ -6,13 +7,7 @@ sleep 10
 apt update
 apt -qq install apache2-utils ruby-rubygems -y
 gem install facter
-echo -e "$R ____  ___                ___                            __    ____  _____ "
-echo -e "$R|    |/ _|____    _______/  |_  ____   ____             |  | _/_   \   _  \ "
-echo -e "$R|      < \__  \  /  ___/\   __\/ __ \ /    \    ______  |  |/ /|   /  /_\  \ "
-echo -e "$R|    |  \ / __ \_\___ \  |  | \  ___/|   |  \  /_____/  |    < |   \  \_/   \ "
-echo -e "$R|____|__ (____  /____  > |__|  \___  >___|  /           |__|_ \|___|\_____  / "
-echo -e "$R        \/    \/     \/            \/     \/                 \/           \/ "
-echo -e "$G Simple K10 node installer.....!"
+
 sleep 1
 echo ""
 echo -e "$G This will install a single node k3s cluster with the OpenEBS ZFS csi driver, Longhorn csi driver and all k10 annotated volumesnapshotclasses"
