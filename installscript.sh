@@ -124,13 +124,13 @@ echo "Kasten k10 is installed and can be accessed on http://"$get_ip":8000/k10/#
 #Optional: deploying a sample pacman application
 kubectl create ns pacman
 helm repo add pacman https://shuguet.github.io/pacman/
-helm install pacman pacman/pacman -n pacman
+helm install pacman pacman/pacman -n pacman --create-namespace --set service.type=LoadBalancer
 echo "Please wait 5sec for the pacman app to spin up..."
 sleep 5
-curl https://raw.githubusercontent.com/jdtate101/jdtate101/main/pacman-ingress.yaml > pacman-ingress.yaml
+curl https://raw.githubusercontent.com/cpouthier/ubuntu-k3s-minio-K10/main/pacman-ingress.yaml > pacman-ingress.yaml
 kubectl apply -f pacman-ingress.yaml -n pacman
 #Finding the Kasten K10 gateway namespace name
-pod=$(kubectl get po -n pacman |grep gateway | awk '{print $1}' )
+#pod=$(kubectl get po -n pacman |grep gateway | awk '{print $1}' )
 
 
 kubectl get po pacman-844b99555f-rt5m2 -n pacman --type=LoadBalancer --port 8001 --name=pacmanwebui
