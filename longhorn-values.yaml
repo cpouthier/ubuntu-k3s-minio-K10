@@ -1,0 +1,20 @@
+persistence:
+  defaultClassReplicaCount: 1
+  defaultClass: false
+csi:
+  attacherReplicaCount: 1
+  provisionerReplicaCount: 1
+  resizerReplicaCount: 1
+  snapshotterReplicaCount: 1
+defaultSettings:
+  defaultReplicaCount: 1
+  defaultDataPath: /longhorn/
+  storageOverProvisioningPercentage: 1000
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  host: longhorn.local
+  tls: false
+  secureBackends: false
+  tlsSecret: longhorn.local-tls
+  path: /
