@@ -3,9 +3,9 @@ Simple script to configure a signke node Kubernetes cluster based on K3s and ext
 
 **Pre-requisites**
 
-This scripts has been tested on a Ubuntu 22.04, it may applies also on other operating system releases.
+This scripts has been tested on a Ubuntu 22.04, it may also apply for other operating system releases.
 
-ZFS needs to get unformatted disk space to create the proper storage pool.
+ZFS needs to get unformatted disk space to create the proper storage pool for Kasten.
 
 Run the script as su (sudo su):
 
