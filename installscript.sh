@@ -1,7 +1,7 @@
 #! /bin/bash
 ##new version of the script
 # the following command will set the ubuntu service restart under apt to automatic
-
+#Installation done on Ubuntu 22.04.3 LTS
 sed -i 's/#$nrconf{restart} = '"'"'i'"'"';/$nrconf{restart} = '"'"'a'"'"';/g' /etc/needrestart/needrestart.conf
 echo -e "$G Installing pre-req's...please standby..."
 sleep 10
