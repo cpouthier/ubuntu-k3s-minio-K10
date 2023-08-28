@@ -1,2 +1,12 @@
 # ubuntu-k3s-minio-K10
-Simple script to configure a one node K3s cluster on Ubuntu 22.04 and extra tools such as Minio and Kasten(aka.K10).
+Simple script to configure a signke node Kubernetes cluster based on K3s and extra tools such as Minio and Kasten K10.
+
+**Pre-requisites**
+
+This scripts has been tested on a Ubuntu 22.04, it may applies also on other operating system releases.
+
+ZFS needs to get unformatted disk space to create the proper storage pool.
+
+Run the script as su (sudo su):
+
+curl -s https://raw.githubusercontent.com/cpouthier/ubuntu-k3s-minio-K10/main/installscript.sh | bash
