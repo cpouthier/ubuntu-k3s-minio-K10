@@ -25,33 +25,29 @@ echo ""
 echo -e "$G Enter drive path of extra volume (ie /dev/sdb). If you do not know this exit this script by cmd-x and run "fdisk -l" to find the drive path: "
 echo -e "$W "
 read DRIVE < /dev/tty
-sleep 5
-echo ""
-echo -e "$G Patching Ubuntu"
-echo ""
-sleep 5
-echo -e "$W " 
+ 
 pro config set apt_news=false
 apt -qq update && apt -qq upgrade -y && apt -qq dist-upgrade -y && apt -qq autoremove -y
-sleep 5
-echo -e "$G Installing k3s single node cluster"
-echo -e "$W "
-sleep 5
+sudo apt install -y curl wget
+
+#Installing k3s single node cluster with local storage disabled 
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable local-storage" sh -s -
-sleep 5
-echo ""
-echo -e "$G Installing ZFS and configuring pool"
-echo -e "$W "
-sleep 5
+mkdir /root/.kube
+cp /etc/rancher/k3s/k3s.yaml /root/.kube/config
+chmod 600 ~/.kube/config && export KUBECONFIG=~/.kube/config
+
+#Checking k3s installation
+sleep 60
+k3s check-config
+kubectl cluster-info
+kubectl get nodes -o wide
+
+#Install zfs and configure kasten-pool storage pool on associated drive
 apt install zfsutils-linux open-iscsi jq -y
 zpool create kasten-pool $DRIVE
-sleep 5
-# sudo apt install -y curl wget
-#curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable local-storage" sh -s -
-#mkdir /root/.kube
-#cp /etc/rancher/k3s/k3s.yaml /root/.kube/config
-#chmod 600 ~/.kube/config && export KUBECONFIG=~/.kube/config
-#kubectl apply -f https://openebs.github.io/charts/zfs-operator.yaml
+
+#Configure zfs storage class
+kubectl apply -f https://openebs.github.io/charts/zfs-operator.yaml
 #curl -s https://raw.githubusercontent.com/jdtate101/jdtate101/main/zfs-sc.yaml > zfs-sc.yaml
 #curl -s https://raw.githubusercontent.com/jdtate101/jdtate101/main/zfs-snapclass.yaml > zfs-snapclass.yaml
 kubectl apply -f zfs-sc.yaml
@@ -66,7 +62,9 @@ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scrip
 chmod +x ./get_helm.sh
 ./get_helm.sh
 
-
+#Adding kubectl autocompletion
+echo 'source <(kubectl completion bash)' >>~/.bashrc
+source <(kubectl completion bash)
 
 sleep 5
 echo ""
