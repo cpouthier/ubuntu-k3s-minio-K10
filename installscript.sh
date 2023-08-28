@@ -81,11 +81,12 @@ curl -s https://raw.githubusercontent.com/cpouthier/ubuntu-k3s-minio-K10/main/lo
 kubectl apply -f longsnapclass.yaml
 
 # Install Kasten K10
-# Run Kasten k10 primer
-curl https://docs.kasten.io/tools/k10_primer.sh | bash
 # Adding and updating Helm repository
 helm repo add kasten https://charts.kasten.io
 helm repo update
+# Run Kasten k10 primer
+curl https://docs.kasten.io/tools/k10_primer.sh | bash
+
 
 #What is this used for?
 #sysctl fs.inotify.max_user_watches=524288
