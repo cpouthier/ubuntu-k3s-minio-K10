@@ -69,7 +69,6 @@ MINIO_ROOT_USER=$username MINIO_ROOT_PASSWORD=$password minio server /minio --co
 echo "@reboot MINIO_ROOT_USER=$username MINIO_ROOT_PASSWORD=$password minio server /minio --console-address ":9001"" > /root/minio_cron
 crontab /root/minio_cron
 get_ip=$(hostname -I | awk '{print $1}')
-echo "Minio console is available on  http://"$get_ip":9001, with the same username/password you set, and the API available on port 9000."
 echo "Please wait 10 sec..."
 sleep 10
 
@@ -117,4 +116,8 @@ kubectl expose po $pod -n kasten-io --type=LoadBalancer --port=8000 --name=k10-d
 # Setting up Kasten k10 ingress
 curl https://raw.githubusercontent.com/cpouthier/ubuntu-k3s-minio-K10/main/k10-ingress.yaml > kasten-ingress.yaml
 kubectl apply -f kasten-ingress.yaml -n kasten-io
-echo "Kasten k10 is installed and can be accessed on http://"$get_ip":8000/k10/#/ using credentials set up earlier in this script"
+echo ""
+echo "Kasten k10 is installed and can be accessed on http://"$get_ip":8000/k10/#/ using credentials set up earlier in this script ($username/$password)"
+echo ""
+echo "Minio console is available on  http://"$get_ip":9001, with the same username/password."
+echo ""
