@@ -4,14 +4,23 @@ Simple script to configure a signle node Kubernetes cluster based on K3s and ext
 ## What is this about?
 
 This script will:
+
    Setup apt and tune the environment
+
    Setup username, password and drive path as environement variables for further reference
+
    Install Helm
+
    Install K3s
+
    Tune bash for kubectl command for autocompletion
+
    Install Minio
+
    Install zfs and configure a pool then configure the storage class in K3s
+
    Install longhorn and configure the volume snapshot class in K3s
+
    Install Kasten K10 and expose dashboard
 
 ## Pre-requisites
