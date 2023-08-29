@@ -1,8 +1,22 @@
 #! /bin/bash
+# This script will:
+#   Setup apt and tune the environment
+#   Setup username, password and drive path as environement variables for further reference
+#   Install Helm
+#   Install K3s
+#   Tune bash for kubectl command for autocompletion
+#   Install Minio
+#   Install zfs and configure a pool then configure the storage class in K3s
+#   Install longhorn and configure the volume snapshot class in K3s
+#   Install Kasten K10 and expose dashboard
+#   
 # The following script will set the ubuntu service restart under apt to automatic
-# Installation done on Ubuntu 22.04.3 LTS
 sed -i 's/#$nrconf{restart} = '"'"'i'"'"';/$nrconf{restart} = '"'"'a'"'"';/g' /etc/needrestart/needrestart.conf
 apt update
+sysctl fs.inotify.max_user_watches=524288
+sysctl fs.inotify.max_user_instances=512
+echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.conf
+echo "fs.inotify.max_user_instances = 512" >> /etc/sysctl.conf
 
 # Setting up interactively some environment variables to run this script
 echo "Kasten will be installed with basic authentication, hence the need to provide a username and a password."
@@ -31,12 +45,20 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable local-storage" sh -s 
 mkdir /root/.kube
 cp /etc/rancher/k3s/k3s.yaml /root/.kube/config
 chmod 600 ~/.kube/config && export KUBECONFIG=~/.kube/config
-
 # Checking k3s installation
+echo ""
+echo "Please wait 60sec for k3s to spin up..."
 sleep 60
 k3s check-config
 kubectl cluster-info
 kubectl get nodes -o wide
+echo ""
+echo "Please review k3s information (you have 15sec!)..."
+sleep 15
+
+# Adding kubectl autocompletion to bash
+echo 'source <(kubectl completion bash)' >>~/.bashrc
+source <(kubectl completion bash)
 
 # Installing Minio
 wget https://dl.min.io/server/minio/release/linux-amd64/minio -P /root
@@ -63,10 +85,6 @@ kubectl apply -f zfs-sc.yaml
 kubectl apply -f zfs-snapclass.yaml
 kubectl patch storageclass kasten-zfs -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
-# Adding kubectl autocompletion to bash
-echo 'source <(kubectl completion bash)' >>~/.bashrc
-source <(kubectl completion bash)
-
 # Install Longhorn Storage & VolumeSnapshotClass
 echo -e "$G Installing Longhorn Storage & VolumeSnapshotClass"
 helm repo add longhorn https://charts.longhorn.io
@@ -81,14 +99,8 @@ helm repo add kasten https://charts.kasten.io
 helm repo update
 # Run Kasten k10 primer
 curl https://docs.kasten.io/tools/k10_primer.sh | bash
-
-
-#What is this used for?
-#sysctl fs.inotify.max_user_watches=524288
-#sysctl fs.inotify.max_user_instances=512
-#echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.conf
-#echo "fs.inotify.max_user_instances = 512" >> /etc/sysctl.conf
-
+echo "Please exit this script within the next 15sec to fix any error before installing Kasten K10."
+sleep 15
 # Create kasten-io namespace
 kubectl create ns kasten-io
 # Install Kasten in the kasten-io namespace with basic authentication
