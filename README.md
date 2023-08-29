@@ -1,7 +1,7 @@
 # ubuntu-k3s-minio-K10
 Simple script to configure a signle node Kubernetes cluster based on K3s and extra tools such as Minio and Kasten K10.
 
-**What is this about?**
+## What is this about?
 
 This script will:
    Setup apt and tune the environment
@@ -14,7 +14,7 @@ This script will:
    Install longhorn and configure the volume snapshot class in K3s
    Install Kasten K10 and expose dashboard
 
-**Pre-requisites**
+## Pre-requisites
 
 This scripts has been tested on a Ubuntu 22.04, it may also apply for other operating system releases.
 
