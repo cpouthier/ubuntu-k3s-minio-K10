@@ -11,4 +11,6 @@ ZFS needs to get some unformatted disk space to create the proper storage pool f
 
 Run the script as su (sudo su):
 
+```console
 curl -s https://raw.githubusercontent.com/cpouthier/ubuntu-k3s-minio-K10/main/installscript.sh | bash
+```

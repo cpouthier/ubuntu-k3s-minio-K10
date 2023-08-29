@@ -99,7 +99,7 @@ helm repo add kasten https://charts.kasten.io
 helm repo update
 # Run Kasten k10 primer
 curl https://docs.kasten.io/tools/k10_primer.sh | bash
-echo "Please exit this script within the next 15sec to fix any error before installing Kasten K10."
+echo "Please exit this script within the next 15sec to fix any error before installing Kasten K10. Then resume the Kasten K10 install with curl -s https://raw.githubusercontent.com/cpouthier/ubuntu-k3s-minio-K10/main/resume-k10-install.sh | bash"
 sleep 15
 # Create kasten-io namespace
 kubectl create ns kasten-io
