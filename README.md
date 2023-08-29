@@ -1,6 +1,8 @@
 # ubuntu-k3s-minio-K10
 Simple script to configure a signle node Kubernetes cluster based on K3s and extra tools such as Minio and Kasten K10.
 
+This script is largely inspired from https://blog.kodu.uk/2023/05/17/kasten-k10-guide-for-beginners-part-4/
+
 ## What is this about?
 
 This script will:
