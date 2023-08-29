@@ -21,11 +21,6 @@ echo ""
 echo " Enter drive path of extra volume (ie /dev/sdb) to set up Kasten K10 zfs pool: "
 read DRIVE < /dev/tty
 
-# Install curl and wget if not present
-pro config set apt_news=false
-apt -qq update && apt -qq upgrade -y && apt -qq dist-upgrade -y && apt -qq autoremove -y
-sudo apt install -y curl wget
-
 # Install Helm
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 chmod +x ./get_helm.sh
