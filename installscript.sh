@@ -17,6 +17,8 @@ sysctl fs.inotify.max_user_watches=524288
 sysctl fs.inotify.max_user_instances=512
 echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.conf
 echo "fs.inotify.max_user_instances = 512" >> /etc/sysctl.conf
+# Installing apache2-utils to get htpasswd
+apt install apache2-utils -y
 
 # Setting up interactively some environment variables to run this script
 echo "Kasten will be installed with basic authentication, hence the need to provide a username and a password."
@@ -53,7 +55,7 @@ k3s check-config
 kubectl cluster-info
 kubectl get nodes -o wide
 echo ""
-echo "Please review k3s information (you have 15sec!)..."
+echo "Please review k3s information (you have 15sec)..."
 sleep 15
 
 # Adding kubectl autocompletion to bash
