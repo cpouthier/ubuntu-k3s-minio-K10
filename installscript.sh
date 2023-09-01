@@ -62,7 +62,11 @@ sleep 15
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 source <(kubectl completion bash)
 
-# Installing Minio
+# Installing Minio for AMD64 outside K3s
+echo ""
+echo "The script is about to install minio for linux AMD64, please ensure you're running on this platform type, otherwise exit this script!"
+echo ""
+sleep 10
 wget https://dl.min.io/server/minio/release/linux-amd64/minio -P /root
 chmod +x /root/minio
 mv /root/minio /usr/local/bin
