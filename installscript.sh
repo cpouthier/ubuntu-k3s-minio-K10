@@ -23,9 +23,9 @@ apt install apache2-utils -y
 # Setting up interactively some environment variables to run this script
 echo "Kasten will be installed with basic authentication, hence the need to provide a username and a password."
 echo "You will use also those credentials to connect to Minio."
-echo "Enter the username: "
+echo -e "\033[0;102m Enter the username: \e[0m"
 read username < /dev/tty
-echo "Enter the password: "
+echo -e "\033[0;102m Enter the password: \e[0m"
 read password < /dev/tty
 htpasswd_entry=$(htpasswd -nbm "$username" "$password" | cut -d ":" -f 2)
 htpasswd="$username:$htpasswd_entry"
@@ -34,7 +34,7 @@ echo "Please wait..."
 sleep 5
 fdisk -l
 echo ""
-echo " Enter drive path of extra volume (ie /dev/sdb) to set up Kasten K10 zfs pool: "
+echo -e "\033[0;102m Enter drive path of extra volume (ie /dev/sdb) to set up Kasten K10 zfs pool: \e[0m"
 read DRIVE < /dev/tty
 
 # Install Helm
@@ -55,7 +55,7 @@ k3s check-config
 kubectl cluster-info
 kubectl get nodes -o wide
 echo ""
-echo "Please review k3s information (you have 15sec)..."
+echo -e "\033[0;101m Please review k3s information (you have 15sec)... \e[0m"
 sleep 15
 
 # Adding kubectl autocompletion to bash
@@ -123,7 +123,7 @@ kubectl expose po $pod -n kasten-io --type=LoadBalancer --port=8000 --name=k10-d
 curl https://raw.githubusercontent.com/cpouthier/ubuntu-k3s-minio-K10/main/k10-ingress.yaml > kasten-ingress.yaml
 kubectl apply -f kasten-ingress.yaml -n kasten-io
 echo ""
-echo "Kasten k10 is installed and can be accessed on http://"$get_ip":8000/k10/#/ using credentials set up earlier in this script ($username/$password)"
+echo -e "\033[0;32m Kasten k10 is installed and can be accessed on http://"$get_ip":8000/k10/#/ using credentials set up earlier in this script ($username/$password)\e[0m"
 echo ""
-echo "Minio console is available on  http://"$get_ip":9001, with the same username/password."
+echo -e "\033[0;32m Minio console is available on  http://"$get_ip":9001, with the same username/password.\e[0m"
 echo ""
