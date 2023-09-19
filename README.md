@@ -23,7 +23,7 @@ This script will:
 
    Install longhorn and configure the volume snapshot class in K3s
 
-   Install Kasten K10 and expose dashboard
+   Install Kasten K10 and expose dashboard 
 
 ## Pre-requisites
 
