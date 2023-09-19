@@ -38,3 +38,4 @@ Run the script as su (sudo su):
 ```console
 curl -s https://raw.githubusercontent.com/cpouthier/ubuntu-k3s-minio-K10/main/installscript.sh | bash
 ```
+# kasten-scripts
