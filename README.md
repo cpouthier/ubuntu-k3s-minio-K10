@@ -29,7 +29,7 @@ This script will:
 
 This scripts has been tested on a Ubuntu 22.04, it may also apply for other operating system releases.
 
-Also ensure curl and wget are already installed.
+Also ensure curl, wget and kubectl are already installed.
 
 ZFS needs to get some unformatted disk space to create the proper storage pool for Kasten.
 
