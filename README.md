@@ -33,6 +33,8 @@ Also ensure curl, wget and kubectl are already installed.
 
 ZFS needs to get some unformatted disk space to create the proper storage pool for Kasten.
 
+You may need to "play" with fdisk (fdisk /dev/xxx) command in order to create a new unformatted partition to be assigned to the ZFS pool.
+
 Run the script as su (sudo su):
 
 ```console
