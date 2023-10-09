@@ -34,4 +34,4 @@ echo -e "\033[0;102m Enter your primary cluster ingress path URL and press Enter
 echo ""
 read primary_ingress_path_url < /dev/tty
 echo ""
-curl -s https://raw.githubusercontent.com/cpouthier/kasten-scripts/main/multicluster_restart.sh | bash
+curl -s https://raw.githubusercontent.com/cpouthier/ubuntu-k3s-minio-K10/main/multicluster_restart.sh| bash

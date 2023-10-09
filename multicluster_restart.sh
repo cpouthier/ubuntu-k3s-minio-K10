@@ -52,6 +52,6 @@ else
             echo ""
             echo "Sorry I didn't understand your answer..."
             echo ""
-            curl -s https://raw.githubusercontent.com/cpouthier/kasten-scripts/main/multicluster_restart.sh | bash
+            curl -s https://raw.githubusercontent.com/cpouthier/ubuntu-k3s-minio-K10/main/multicluster_restart.sh | bash
     fi
 fi
