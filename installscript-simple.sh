@@ -95,13 +95,6 @@ kubectl apply -f zfs-sc.yaml
 kubectl apply -f zfs-snapclass.yaml
 kubectl patch storageclass kasten-zfs -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
-# Install Longhorn Storage & VolumeSnapshotClass
-echo -e "$G Installing Longhorn Storage & VolumeSnapshotClass"
-helm repo add longhorn https://charts.longhorn.io
-helm repo update
-helm install longhorn longhorn/longhorn --namespace longhorn-system --create-namespace -f https://raw.githubusercontent.com/cpouthier/ubuntu-k3s-minio-K10/main/longhorn-values.yaml
-curl -s https://raw.githubusercontent.com/cpouthier/ubuntu-k3s-minio-K10/main/longhorn-snapshotclass.yaml > longsnapclass.yaml
-kubectl apply -f longsnapclass.yaml
 
 # Install Kasten K10
 # Adding and updating Helm repository

@@ -1,0 +1,1 @@
+helm install rancher rancher-stable/rancher   --namespace cattle-system   --set hostname=rancher.pouthier.fr   --set bootstrapPassword=kasten4me!
