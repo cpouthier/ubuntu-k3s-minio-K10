@@ -13,6 +13,8 @@ This script will:
 
    Install Helm
 
+   Install kubectl command
+
    Install K3s
 
    Tune bash for kubectl command for autocompletion
@@ -21,23 +23,22 @@ This script will:
 
    Install zfs and configure a pool then configure the storage class in K3s
 
-   Install longhorn and configure the volume snapshot class in K3s
-
    Install Kasten K10 and expose dashboard 
 
 ## Pre-requisites
 
-This scripts has been tested on a Ubuntu 22.04, it may also apply for other operating system releases.
+This scripts has been tested on a Ubuntu 22.04 (AMD64), it may also apply for other operating system releases.
 
-Also ensure curl, wget and kubectl are already installed.
+In order to work properly, ensure you'll get at least 8GB of memory available for the whole environement and enough disk space (>50GB).
+
+Also ensure curl, wget are available and installed onto the server.
 
 ZFS needs to get some unformatted disk space to create the proper storage pool for Kasten.
 
-You may need to "play" with fdisk (fdisk /dev/xxx) command in order to create a new unformatted partition to be assigned to the ZFS pool.
+You may need to "play" with fdisk (fdisk /dev/xxx) command in order to create a new unformatted partition which will be assigned to the ZFS pool when executing the script.
 
 Run the script as su (sudo su):
 
 ```console
 curl -s https://raw.githubusercontent.com/cpouthier/ubuntu-k3s-minio-K10/main/installscript.sh | bash
 ```
-# kasten-scripts
