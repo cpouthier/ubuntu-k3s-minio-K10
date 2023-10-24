@@ -29,11 +29,11 @@ This script will:
 
 This scripts has been tested on a Ubuntu 22.04 (AMD64), it may also apply for other operating system releases.
 
-In order to work properly, ensure you'll get at least 8GB of memory available for the whole environement and enough disk space (>50GB).
+In order to work properly, ensure you'll get **at least 8GB of memory available** for the whole environement.
 
 Also ensure curl, wget are available and installed onto the server.
 
-ZFS needs to get some unformatted disk space to create the proper storage pool for Kasten.
+ZFS needs to get some **unformatted disk space** to create the proper storage pool for Kasten.
 
 You may need to "play" with fdisk (fdisk /dev/xxx) command in order to create a new unformatted partition which will be assigned to the ZFS pool when executing the script.
 
