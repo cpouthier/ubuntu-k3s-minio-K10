@@ -21,7 +21,7 @@ This script will:
 
    Install Minio
 
-   Install zfs and configure a pool then configure the storage class in K3s
+   Install zfs and configure a pool then configure the storage class in K3sgi
 
    Install Kasten K10 and expose dashboard 
 
@@ -35,7 +35,7 @@ Also ensure curl, wget are available and installed onto the server.
 
 ZFS needs to get some **unformatted disk space** to create the proper storage pool for Kasten.
 
-You may need to "play" with fdisk (fdisk /dev/xxx) command in order to create a new unformatted partition which will be assigned to the ZFS pool when executing the script. Keep in m ind that Kasten needs roughly 80GB of storage to deploy.
+You may need to "play" with fdisk (fdisk /dev/xxx) command in order to create a new unformatted partition which will be assigned to the ZFS pool when executing the script. Keep in m ind that Kasten needs roughly 80GB of storage to deploy, so plan accordingly and enseure you'll get also enough storage for your applications.
 
 Run the script as su (sudo su):
 
