@@ -10,6 +10,7 @@
 #   Install NGINX
 #   Install Kasten K10 and expose dashboard
 #   Create one location profile for each Minio bucket
+#   Enable daily Kasten reports
 #   Install Pacman app and expose it on port 80
 #   Set up a daily backup and export policy for Pacman
 # 
